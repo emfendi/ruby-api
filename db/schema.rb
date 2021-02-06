@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_080632) do
+ActiveRecord::Schema.define(version: 2021_02_06_090742) do
 
   create_table "keywords", force: :cascade do |t|
     t.string "user_id"
     t.string "keyword"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "keyword"], name: "index_keywords_on_user_id_and_keyword", unique: true
   end
 
   create_table "posts", force: :cascade do |t|

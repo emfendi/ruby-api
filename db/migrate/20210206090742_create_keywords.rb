@@ -6,5 +6,7 @@ class CreateKeywords < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :keywords, [:user_id, :keyword], unique: true
+
   end
 end
