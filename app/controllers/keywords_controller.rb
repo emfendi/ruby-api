@@ -1,9 +1,11 @@
 class KeywordsController < ApplicationController
+
   def index
     @keyword = Keyword.all
+    @keyword = @keyword.group_by { |keyword| keyword.keyword }.sort_by { |k, v| k.length }
     render json: @keyword
   end
-
+  
 
   # POST /keywords
   def create
@@ -20,7 +22,7 @@ class KeywordsController < ApplicationController
   # DELETE /keywords/:id
   def destroy
     @keyword = Keyword.find(params[:id])
-    
+
     if @keyword
       @keyword.destroy
       render json: {message: 'Keyword successfully deleted.'}, state:200
@@ -29,7 +31,7 @@ class KeywordsController < ApplicationController
     end
 
   end
-  
+
   private
 
   def keyword_params
