@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
-  
+
   # POST /posts
   def create
     @post = Post.new(post_params)
     if @post.save
-      render json: @post
+      @res = send_alert(@post)
+      render json: @res
     else
       render error: {error:'Unable to create Post.'}, status:400
     end
@@ -13,19 +14,22 @@ class PostsController < ApplicationController
   end
 
 
-  def getPostByKeyword(keyword)
+  def send_alert(post)
   
-    # @post = Post.where('title LIKE ?', "%#{keyword}%")
-    @post = Post.where('title LIKE ? OR content LIKE ?', "%#{keyword}%", "%#{keyword}%")
+    @keywords = Keyword.all
+    # @keywords = @keyword.group_by { |keyword| keyword.keyword }.sort_by { |k, v| k.length }
 
-    if @post
-      return @post
-    else
-      # @post = Post.where('content LIKE ?', "%#{keyword}%")
+    @arr = Array.new
 
+    for k in @keywords
+      # p k.keyword
+      if post.title.include? k.keyword
+        p "alert keyword[" + k.keyword + "] to user " + k.user_id 
+        @arr << { :keyword => k.keyword, :user_id => k.user_id }
+      end
     end
 
-    return nil
+    return @arr
 
   end
 
