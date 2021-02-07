@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 
+  
   # POST /posts
   def create
     @post = Post.new(post_params)
@@ -11,7 +12,6 @@ class PostsController < ApplicationController
 
   end
 
-      
 
   def getPostByKeyword(keyword)
   
@@ -28,7 +28,6 @@ class PostsController < ApplicationController
     return nil
 
   end
-
 
 
   private
