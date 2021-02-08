@@ -2,9 +2,8 @@ class KeywordsController < ApplicationController
 
 
   def index
-    @keyword = Keyword.all
-    @keyword = @keyword.group_by { |keyword| keyword.keyword }.sort_by { |k, v| k.length }
-    render json: @keyword
+    @keywords = Keyword.get_distinct_keywords
+    render json: @keywords
   end
   
 
@@ -41,7 +40,7 @@ class KeywordsController < ApplicationController
   private
 
   def keyword_params
-    params.require(:keyword).permit(:user_id, :keyword)
+    params.require(:keyword).permit(:user_id, :keyword_name)
   end
 
 end
