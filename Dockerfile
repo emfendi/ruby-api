@@ -1,6 +1,6 @@
 # 1. ubuntu 설치 (패키지 업데이트)
-FROM       ubuntu:20.04
-RUN        apt-get -y update
+FROM ubuntu:20.04
+RUN apt-get -y update
 
 # 2. node 설치
 RUN apt-get install -y nodejs
@@ -26,10 +26,10 @@ RUN bundle install
 COPY . /myapp
 
 # Add a script to be executed every time the container starts.
-#COPY entrypoint.sh /usr/bin/
-#RUN chmod +x /usr/bin/entrypoint.sh
-#ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 30000
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
 
 # Start the main process.
 CMD ["rails", "server", "-b", "0.0.0.0"]
