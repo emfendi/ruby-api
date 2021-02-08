@@ -11,10 +11,10 @@ class KeywordsController < ApplicationController
   def create
     @keyword = Keyword.new(keyword_params)
   
-    if @keyword.save
+    if @keyword.save(validate: true)
       render json: {message: 'Keyword successfully created.'}, state:200
     else
-      render error: {error:'Unable to create Keyowrd.'}, status:400
+      render json: {message: 'Unable to create Keyowrd.'}, status: 400
     end
 
     rescue ActiveRecord::RecordNotUnique => e

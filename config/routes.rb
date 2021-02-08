@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'keywords' => 'keywords#create'
   delete 'keywords/:id(.:format)', :to => 'keywords#destroy'
 
+  get 'posts' => 'posts#index'
   post 'posts' => 'posts#create'
 
 end

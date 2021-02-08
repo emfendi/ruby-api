@@ -1,14 +1,19 @@
 class PostsController < ApplicationController
 
+  def index
+    @posts = Post.all
+    render json: @posts
+  end
+
 
   # POST /posts
   def create
     @post = Post.new(post_params)
-    if @post.save
+    if @post.save(validate: true)
       @res = send_alert(@post)
       render json: @res
     else
-      render error: {error:'Unable to create Post.'}, status:400
+      render json: {message: 'Unable to create Post.'}, status: 400
     end
   end
 
