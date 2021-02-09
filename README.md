@@ -6,6 +6,6 @@ cd ruby-api
 
 ### Run
 <pre>
-docker pull emfendi/rabbit-api:latest
-docker run --rm -d  -p 3000:3000/tcp emfendi/rabbit-api:latest
+docker pull emfendi/ruby-api:latest
+docker run --rm -d  -p 3000:3000/tcp emfendi/ruby-api:latest
 </pre>
