@@ -1,6 +1,6 @@
 class Keyword < ApplicationRecord
 
-  validates_presence_of :keyword_name, :user_id
+  validates_presence_of :user_id, :keyword_name
 
   def self.get_distinct_keywords
     @keywords = Keyword.all
